@@ -1,0 +1,54 @@
+{
+  "name": "nightwatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {},
+  "devDependencies": {
+    "chromedriver": "^79.0.0",
+    "geckodriver": "^1.19.1",
+    "nightwatch": "^1.3.2",
+    "npm-watch": "^0.6.0",
+    "dotenv": "^8.2.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "start": "npm run watch",
+    "test": "nightwatch -c configs/local/nightwatch.conf.js -e chrome",
+    "test:mac": "nightwatch -e firefox,chrome,safari",
+    "watch": "npm-watch",
+    "bs:desktop:win:chrome:latest": "nightwatch -c ./configs/browserstack/desktop/win/chrome/win-10-chrome-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:chrome:latest-1": "nightwatch -c ./configs/browserstack/desktop/win/chrome/win-10-chrome-latest-1.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:chrome:latest-2": "nightwatch -c ./configs/browserstack/desktop/win/chrome/win-10-chrome-latest-2.conf.js --ciEnv=lat-1 --device=desktop",
+    "suite:desktop:win:chrome": "npm-run-all --parallel bs:desktop:win:chrome:latest bs:desktop:win:chrome:latest-1 bs:desktop:win:chrome:latest-2",
+    "bs:desktop:win:edge:latest": "nightwatch -c ./configs/browserstack/desktop/win/edge/win-10-edge-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:edge:latest-1": "nightwatch -c ./configs/browserstack/desktop/win/edge/win-10-edge-latest-1.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:edge:latest-2": "nightwatch -c ./configs/browserstack/desktop/win/edge/win-10-edge-latest-2.conf.js --ciEnv=lat-1 --device=desktop",
+    "suite:desktop:win:edge": "npm-run-all --parallel bs:desktop:win:edge:latest bs:desktop:win:edge:latest-1 bs:desktop:win:edge:latest-2",
+    "bs:desktop:win:firefox:latest": "nightwatch -c ./configs/browserstack/desktop/win/firefox/win-10-firefox-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:firefox:latest-1": "nightwatch -c ./configs/browserstack/desktop/win/firefox/win-10-firefox-latest-1.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:win:firefox:latest-2": "nightwatch -c ./configs/browserstack/desktop/win/firefox/win-10-firefox-latest-2.conf.js --ciEnv=lat-1 --device=desktop",
+    "suite:desktop:win:firefox": "npm-run-all --parallel bs:desktop:win:firefox:latest bs:desktop:win:firefox:latest-1 bs:desktop:win:firefox:latest-2",
+    "suite:desktop:win": "npm-run-all --parallel suite:desktop:win:chrome suite:desktop:win:edge suite:desktop:win:firefox",
+    "bs:desktop:mac:safari:latest": "nightwatch -c ./configs/browserstack/desktop/mac/safari/mac-safari-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:mac:safari:latest-1": "nightwatch -c ./configs/browserstack/desktop/mac/safari/mac-safari-latest-1.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:mac:safari:latest-2": "nightwatch -c ./configs/browserstack/desktop/mac/safari/mac-safari-latest-2.conf.js --ciEnv=lat-1 --device=desktop",
+    "suite:desktop:mac:safari": "npm-run-all --parallel bs:desktop:mac:safari:latest bs:desktop:mac:safari:latest-1 bs:desktop:mac:safari:latest-2",
+    "bs:desktop:mac:chrome:latest": "nightwatch -c ./configs/browserstack/desktop/mac/chrome/mac-chrome-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "bs:desktop:mac:firefox:latest": "nightwatch -c ./configs/browserstack/desktop/mac/firefox/mac-firefox-latest.conf.js --ciEnv=lat-1 --device=desktop",
+    "suite:desktop:mac": "npm-run-all --parallel suite:desktop:mac:safari bs:desktop:mac:chrome:latest bs:desktop:mac:firefox:latest",
+    "suite": "npm-run-all --parallel suite:desktop:win",
+    "suite:desktop": "nightwatch -c ./configs/browserstack/desktop/desktop-series.conf.js -e win-10-chrome-78 --ciEnv=prada.com --device=desktop",
+    "suite:mobile:ios": "nightwatch -c ./configs/browserstack/mobile/mobile-series.conf.js -e ios-12-ipad-air-2019 --ciEnv=prada.com --device=mobile",
+    "suite:mobile:android": "nightwatch -c ./configs/browserstack/mobile/mobile-series.conf.js -e android-9-galaxy-s10,android-7-galaxy-s8,android-9-galaxy-note-10,android-10-pixel-3,android-9-galaxy-tab-s5e,android-7-galaxy-tab-s3 --ciEnv=prada.com --device=mobile",
+    "suite:mobile:android-1": "nightwatch -c ./configs/browserstack/mobile/mobile-series.conf.js -e android-9-galaxy-s10 --ciEnv=prada.com --device=mobile"
+  },
+  "watch": {
+    "test": [
+      "/tests/*",
+      "/page-objects/*"
+    ]
+  },
+  "author": "",
+  "license": "ISC"
+}
